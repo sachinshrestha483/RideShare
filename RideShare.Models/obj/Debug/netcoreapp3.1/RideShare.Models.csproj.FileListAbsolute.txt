@@ -1,0 +1,9 @@
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\bin\Debug\netcoreapp3.1\RideShare.Models.deps.json
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\bin\Debug\netcoreapp3.1\RideShare.Models.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.csprojAssemblyReference.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.AssemblyInfoInputs.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.AssemblyInfo.cs
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\bin\Debug\netcoreapp3.1\RideShare.Models.pdb
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.csproj.CoreCompileInputs.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.Models\obj\Debug\netcoreapp3.1\RideShare.Models.pdb

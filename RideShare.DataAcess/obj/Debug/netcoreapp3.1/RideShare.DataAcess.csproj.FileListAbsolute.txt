@@ -1,0 +1,17 @@
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.DataAcess.deps.json
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.DataAcess.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.csprojAssemblyReference.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.AssemblyInfoInputs.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.AssemblyInfo.cs
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.DataAcess.runtimeconfig.json
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.DataAcess.runtimeconfig.dev.json
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.genruntimeconfig.cache
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.DataAcess.pdb
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.Models.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.Utilities.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.Models.pdb
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\bin\Debug\netcoreapp3.1\RideShare.Utilities.pdb
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.csproj.CopyComplete
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.dll
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.pdb
+C:\Users\sachi\source\repos\RideShare\RideShare.DataAcess\obj\Debug\netcoreapp3.1\RideShare.DataAcess.csproj.CoreCompileInputs.cache
