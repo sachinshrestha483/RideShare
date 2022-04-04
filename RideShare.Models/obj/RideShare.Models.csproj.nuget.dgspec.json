@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {}
+    "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {
+    "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
+        "projectUniqueName": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
         "projectName": "RideShare.Models",
-        "projectPath": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
-        "packagesPath": "C:\\Users\\sachi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\obj\\",
+        "projectPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
+        "packagesPath": "C:\\Users\\SHREE\\.nuget\\packages\\",
+        "outputPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\sachi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SHREE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -31,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -54,6 +55,10 @@
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "System.Runtime": {
+              "target": "Package",
+              "version": "[4.3.1, )"
             }
           },
           "imports": [
@@ -66,18 +71,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

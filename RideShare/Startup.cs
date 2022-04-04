@@ -23,6 +23,7 @@ using RideShare.DataAcess.Repository;
 using RideShare.DataAcess.Repository.IRepository;
 using RideShare.Models.Models.Mapper;
 using RideShare.Utilities.Helpers.EmailHelper;
+using RideShare.Utilities.Helpers.FirebaseHelper;
 using RideShare.Utilities.Helpers.MessageHelper;
 using RideShare.Utilities.Security;
 
@@ -41,31 +42,21 @@ namespace RideShare
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IFirebaseRepository, FirebaseRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.Configure<TwilioSettings>(Configuration.GetSection("Twilio"));
-
-
-
-
+            services.Configure<FirebaseSettings>(Configuration.GetSection("FirebaseSection"));
             services.Configure<EmailOptions>(Configuration);
-
             services.AddSingleton<IEmailSender, EmailSender>();
-
-
-
             services.AddHttpContextAccessor();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             // we use appSettingss While Configuring the JWT Tokens"
             services.Configure<AppSettings>(appSettingsSection);
-
             var appSettings = appSettingsSection.Get<AppSettings>();// here that class is used
-
             var key = Encoding.ASCII.GetBytes(appSettings.JwtTokenSecret);// value of the Security Key
-
 
             services.AddAuthentication(x =>
             {
-
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
@@ -73,7 +64,7 @@ namespace RideShare
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
-                
+
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -82,46 +73,26 @@ namespace RideShare
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
-
-
-
-
-
-
-
-
                 };
-               
+
             });
             ;
-
-
-
-
-
-
             services.AddAutoMapper(typeof(Mapping));
-
             services.AddSingleton<DataProtectionPurposeStrings>();
-
-
-            services.AddSwaggerGen(options => {
-
+            services.AddSwaggerGen(options =>
+            {
                 options.SwaggerDoc("ParkyOpenApiSpec"
                     , new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
                         Title = "Parky Api",
                         Version = "1"
                     });
-
-
-
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description =
-             "JWT Authorization header using the Bearer scheme. \r\n\r\n " +
-             "Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\n" +
-             "Example: \"Bearer 12345abcdef\"",
+                    "JWT Authorization header using the Bearer scheme. \r\n\r\n " +
+                    "Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\n" +
+                    "Example: \"Bearer 12345abcdef\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -146,19 +117,10 @@ namespace RideShare
                         new List<string>()
                     }
                 });
-
-
-
-
-
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var cmlcommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
                 options.IncludeXmlComments(cmlcommentsFullPath);
             });
-
-
-
-
             services.AddControllers();
         }
 
@@ -169,16 +131,14 @@ namespace RideShare
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseCors(
             x => x.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
             );
-
-
             app.UseSwagger();
-            app.UseSwaggerUI(options => {
+            app.UseSwaggerUI(options =>
+            {
                 options.SwaggerEndpoint("/swagger/ParkyOpenApiSpec/swagger.json", "ParkyApi");
                 options.RoutePrefix = "";
                 // now to go to launch Setting.json for making it default launch go to profiles and remove launchurl whose value is weather forecast

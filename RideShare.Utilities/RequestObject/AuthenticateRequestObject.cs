@@ -6,7 +6,7 @@ namespace RideShare.Utilities.RequestObject
 {
   public   class AuthenticateRequestObject
     {
-        public string Name { get; set; }
+        public string email { get; set; }
 
         public string Password { get; set; }
     }

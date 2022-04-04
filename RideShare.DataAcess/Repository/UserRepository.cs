@@ -7,6 +7,7 @@ using RideShare.Utilities.Enums;
 using RideShare.Utilities.Helpers;
 using RideShare.Utilities.Helpers.EmailHelper;
 using RideShare.Utilities.Helpers.MessageHelper;
+using RideShare.Utilities.RequestObject;
 using RideShare.Utilities.Security;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,17 @@ namespace RideShare.DataAcess.Repository
 
         private readonly IDataProtector protector;
 
+        private readonly FirebaseRepository _firebaseRepository;
+
+
+
+
+
+
         private TwilioSettings _twilioOptions { get; set; }
+
+
+        
 
 
         public UserRepository
@@ -44,7 +55,7 @@ namespace RideShare.DataAcess.Repository
         }
 
 
-        public User Authenticate(string username, string password)
+        public User Authenticate(string email, string password)
         {
 
             string encryptedPassword = protector.Protect(password);
@@ -56,7 +67,7 @@ namespace RideShare.DataAcess.Repository
             var user = _db.
                 Users
                 .FirstOrDefault(
-                u => u.UserName == username
+                u => u.Email == email
                 &&
                 !(u.Password == encryptedPassword));
 
@@ -64,14 +75,64 @@ namespace RideShare.DataAcess.Repository
 
         }
 
-        public void Register(string userName, string password)
+
+       
+
+        public string GetUserPhotoName(string photoName, int userId)
         {
-            string encryptedPassword = protector.Protect(password);
+            var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.UserProfilePhotoPath;
+
+        }
+
+
+
+        public bool SetUserProfilePhoto(string photoName,int userId)
+        {
+
+
+            var user = _db.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.UserProfilePhotoPath = photoName;
+
+            _db.Users.Update(user);
+            
+          var res=  _db.SaveChanges();
+
+            if (res == 0)
+            {
+                return false;
+            }
+
+
+
+
+
+            return true;
+
+        }
+
+        public void Register(RegisterUserRequest requestUser )
+        {
+            string encryptedPassword = protector.Protect(requestUser.Password);
 
             var user = new User();
-            user.UserName = userName;
+            user.FirstName = requestUser.FirstName;
+            user.LastName = requestUser.LastName;   
             user.Role = (int)UserRoles.Admin;
             user.Password = encryptedPassword;
+            user.Email = requestUser.Email;
+            user.PhoneNumber = requestUser.Phone;
 
 
             _db.Add(user);
@@ -83,12 +144,26 @@ namespace RideShare.DataAcess.Repository
         }
 
 
-
-
-
-        public bool isUniqueUser(string name)
+        public bool isUniquePhone(string phoneNumber)
         {
-            var user = _db.Users.FirstOrDefault(u => u.UserName == name);
+            var user = _db.Users.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
+
+            if (user == null)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+
+
+
+
+        public bool isUniqueEmail(string email)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.Email == email);
 
             if (user == null)
             {
@@ -134,7 +209,7 @@ namespace RideShare.DataAcess.Repository
 
             if (res == 1)
             {
-            _emailSender.SendEmail("xoxowa2754@naymio.com", "Email Verification", emailVerification.Code);
+            _emailSender.SendEmail(user.Email, "Email Verification", emailVerification.Code);
 
             }
 
@@ -189,9 +264,9 @@ namespace RideShare.DataAcess.Repository
                 try
                 {
                     var mesage = MessageResource.Create(
-                 body: "Hi",
+                 body:"Your OTP for Number Verification is "+ phoneVerification.Code,
                  from: new Twilio.Types.PhoneNumber(_twilioOptions.PhoneNumber),
-                 to: new Twilio.Types.PhoneNumber("+916261675570")
+                 to: new Twilio.Types.PhoneNumber("+917440815621")
 
 
                  );
@@ -223,7 +298,7 @@ namespace RideShare.DataAcess.Repository
 
             var user = _db.Users.FirstOrDefault(u => u.Id == userId);
 
-            var tokenFromDb = _db.EmailVerifications.FirstOrDefault(e => e.UserId == user.Id && !(e.Code == code));
+            var tokenFromDb = _db.EmailVerifications.FirstOrDefault(e => e.UserId == user.Id && (e.Code == code));
 
 
             if (tokenFromDb == null)

@@ -14,6 +14,23 @@ namespace RideShare.DataAcess.Repository.IRepository
         IJwtTokenRepository JwtTokenRepository { get; }
 
         IRefreshTokenRepository RefreshTokenRepository { get; }
+
+        IFirebaseRepository FirebaseRepository { get; }
+
+        ITravelPrefrenceRepository TravelPrefrenceRepository { get; }
+
+        ISubTravelPrefrenceRepository SubTravelPrefrenceRepository { get; }
+
+        IUserTravelPrefrenceRepository UserTravelPrefrenceRepository { get; }
+
+        IVehicleRepository VehicleRepository { get; }
+
+        IVehicleTypeRepository VehicleTypeRepository { get; }
+
+        IRideRepository RideRepository { get; }
+
+        IRideIntermediatePositionRepository RideIntermediatePositionRepository { get; }
+
         void Save();
 
 

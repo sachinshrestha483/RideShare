@@ -113,6 +113,134 @@ namespace RideShare.DataAcess.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("RideShare.Models.Models.Ride", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("DateTimeOfRide")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<float>("DistanceinMeter")
+                        .HasColumnType("real");
+
+                    b.Property<string>("EndLocationLatitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndLocationLongitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndLocationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberofPassenger")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("RouteVia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartLocationLatitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartLocationLongitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartLocationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("Ride");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.RideIntermediatePosition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("PositionLatitude")
+                        .HasColumnType("decimal(12,9)");
+
+                    b.Property<decimal>("PositionLongitude")
+                        .HasColumnType("decimal(12,9)");
+
+                    b.Property<string>("PositionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RideId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RideId");
+
+                    b.ToTable("RideIntermediatePositions");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.SubTravelPrefrence", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TravelPrefrenceId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("show")
+                        .HasColumnType("bit");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TravelPrefrenceId");
+
+                    b.ToTable("SubTravelPrefrences");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.TravelPrefrence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("show")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TravelPrefrences");
+                });
+
             modelBuilder.Entity("RideShare.Models.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -121,6 +249,12 @@ namespace RideShare.DataAcess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -132,7 +266,7 @@ namespace RideShare.DataAcess.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("UserProfilePhotoPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isEmailVerified")
@@ -144,6 +278,86 @@ namespace RideShare.DataAcess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.UserTravellPrefrences", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SubTravelPrefrenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubTravelPrefrenceId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserTravellPrefrences");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfRegistration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LicensePlateNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VehicleTypeId");
+
+                    b.ToTable("Vehicle");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.VehicleType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleTypes");
                 });
 
             modelBuilder.Entity("RideShare.Models.Models.EmailVerification", b =>
@@ -177,6 +391,85 @@ namespace RideShare.DataAcess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.Ride", b =>
+                {
+                    b.HasOne("RideShare.Models.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RideShare.Models.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.RideIntermediatePosition", b =>
+                {
+                    b.HasOne("RideShare.Models.Models.Ride", "Ride")
+                        .WithMany()
+                        .HasForeignKey("RideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ride");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.SubTravelPrefrence", b =>
+                {
+                    b.HasOne("RideShare.Models.Models.TravelPrefrence", "TravelPrefrence")
+                        .WithMany()
+                        .HasForeignKey("TravelPrefrenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TravelPrefrence");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.UserTravellPrefrences", b =>
+                {
+                    b.HasOne("RideShare.Models.Models.SubTravelPrefrence", "SubTravelPrefrence")
+                        .WithMany()
+                        .HasForeignKey("SubTravelPrefrenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RideShare.Models.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubTravelPrefrence");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RideShare.Models.Models.Vehicle", b =>
+                {
+                    b.HasOne("RideShare.Models.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RideShare.Models.Models.VehicleType", "VehicleType")
+                        .WithMany()
+                        .HasForeignKey("VehicleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("VehicleType");
                 });
 #pragma warning restore 612, 618
         }

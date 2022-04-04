@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using RideShare.DataAcess.Data;
 using RideShare.DataAcess.Repository.IRepository;
 using RideShare.Utilities.Helpers.EmailHelper;
+using RideShare.Utilities.Helpers.FirebaseHelper;
 using RideShare.Utilities.Helpers.MessageHelper;
 using RideShare.Utilities.Security;
 using System;
@@ -24,7 +25,9 @@ namespace RideShare.DataAcess.Repository
             DataProtectionPurposeStrings dataProtectionPurposeStrings,
             IOptions<AppSettings> appSettings,
              IEmailSender emailSender,
-             IOptions<TwilioSettings> twilioOptions
+             IOptions<TwilioSettings> twilioOptions,
+             IOptions<FirebaseSettings> firebaseOptions
+
             )
         {
             _db = db;
@@ -43,6 +46,16 @@ namespace RideShare.DataAcess.Repository
 
             CategoryRepository = new CategoryRepository(_db);
 
+            FirebaseRepository = new FirebaseRepository(_db, firebaseOptions);
+
+
+            TravelPrefrenceRepository = new TravelPrefrenceRepository(_db);
+            SubTravelPrefrenceRepository = new SubTravelPrefrenceRepository(_db);
+            UserTravelPrefrenceRepository = new UserTravelPrefrenceRepository(_db);
+            VehicleRepository = new VehicleRepository(_db);
+            VehicleTypeRepository = new VehicleTypeRepository(_db);
+            RideRepository = new RideRepository(_db);
+            RideIntermediatePositionRepository = new RideIntermediatePositionRepository(_db);
 
         }
         public ICategoryRepository CategoryRepository { get; private set; }
@@ -51,7 +64,28 @@ namespace RideShare.DataAcess.Repository
         public IJwtTokenRepository JwtTokenRepository { get; private set; }
 
 
+        public IFirebaseRepository FirebaseRepository { get; private set; }
+
         public IRefreshTokenRepository RefreshTokenRepository { get; private set; }
+        
+        public ITravelPrefrenceRepository TravelPrefrenceRepository { get; private set; }
+
+
+        public IUserTravelPrefrenceRepository UserTravelPrefrenceRepository { get; private set; }
+
+
+        public ISubTravelPrefrenceRepository SubTravelPrefrenceRepository { get; private set; }
+
+
+        public IVehicleRepository VehicleRepository { get; private set; }
+
+        public IVehicleTypeRepository VehicleTypeRepository { get; private set; }
+
+        public IRideRepository RideRepository { get; private set; }
+
+        public IRideIntermediatePositionRepository RideIntermediatePositionRepository { get; private set; }
+
+
         public void Dispose()
         {
             _db.Dispose();

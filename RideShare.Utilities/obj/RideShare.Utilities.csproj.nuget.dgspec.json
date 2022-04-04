@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj": {}
+    "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj": {
+    "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj",
-        "projectName": "RideShare.Utilities",
-        "projectPath": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj",
-        "packagesPath": "C:\\Users\\sachi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\obj\\",
+        "projectUniqueName": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
+        "projectName": "RideShare.Models",
+        "projectPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj",
+        "packagesPath": "C:\\Users\\SHREE\\.nuget\\packages\\",
+        "outputPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\sachi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SHREE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -31,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,7 +42,92 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "System.Runtime": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj",
+        "projectName": "RideShare.Utilities",
+        "projectPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\RideShare.Utilities.csproj",
+        "packagesPath": "C:\\Users\\SHREE\\.nuget\\packages\\",
+        "outputPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\SHREE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj": {
+                "projectPath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare.Models\\RideShare.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "DataAnnotationsExtensions": {
+              "target": "Package",
+              "version": "[5.0.1.27, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.0.3, )"
@@ -50,6 +135,10 @@
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "S2Geometry": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             },
             "SendGrid": {
               "target": "Package",
@@ -66,21 +155,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
