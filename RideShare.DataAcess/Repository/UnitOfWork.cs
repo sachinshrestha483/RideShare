@@ -56,6 +56,7 @@ namespace RideShare.DataAcess.Repository
             VehicleTypeRepository = new VehicleTypeRepository(_db);
             RideRepository = new RideRepository(_db);
             RideIntermediatePositionRepository = new RideIntermediatePositionRepository(_db);
+            RideShareOfferRepository = new RideShareOfferRepository(_db);
 
         }
         public ICategoryRepository CategoryRepository { get; private set; }
@@ -85,6 +86,7 @@ namespace RideShare.DataAcess.Repository
 
         public IRideIntermediatePositionRepository RideIntermediatePositionRepository { get; private set; }
 
+        public IRideShareOfferRepository RideShareOfferRepository { get; private set; }
 
         public void Dispose()
         {

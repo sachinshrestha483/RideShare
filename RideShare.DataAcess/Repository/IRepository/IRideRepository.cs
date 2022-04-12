@@ -8,9 +8,11 @@ namespace RideShare.DataAcess.Repository.IRepository
     public interface IRideRepository : IRepository<Ride>
     {
         public void Update(Ride ride);
+        public void UpdateNumberOfPassengers(int id, int numberofPassenger);
+
     }
 
-   
+
 
 
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RideShare.DataAcess.Data;
 
 namespace RideShare.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407152731_AddRideShareOffer")]
+    partial class AddRideShareOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,12 +212,6 @@ namespace RideShare.DataAcess.Migrations
                     b.Property<DateTimeOffset>("CreatedDateTime")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int>("DistancefromFinalLocation")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DistancefromInitialLocation")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("EndLocationLatitude")
                         .HasColumnType("decimal(12,9)");
 
@@ -239,9 +235,6 @@ namespace RideShare.DataAcess.Migrations
 
                     b.Property<int>("OfferedPrice")
                         .HasColumnType("int");
-
-                    b.Property<string>("OverlappingPath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RideId")
                         .HasColumnType("int");

@@ -24,6 +24,23 @@ namespace RideShare.DataAcess.Repository
         {
             return _db.Ride.Include(r => r.IntermediatePositions).FirstOrDefault(r => r.Id == id);
         }
+
+
+        public void UpdateNumberOfPassengers(int id, int numberofPassenger)
+        {
+            var ride = _db.Ride.FirstOrDefault(r => r.Id == id);
+            if(ride.NumberofPassenger>numberofPassenger)
+            {
+                ride.NumberofPassenger = ride.NumberofPassenger - numberofPassenger;
+            }
+            else
+            {
+                ride.NumberofPassenger = 0;
+            }
+            _db.SaveChanges();
+        }
+
+
         public void Update(Ride ride)
         {
             var savedRide = _db.Ride.FirstOrDefault(r => r.Id == ride.Id);

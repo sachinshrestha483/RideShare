@@ -10,6 +10,8 @@ namespace RideShare.Models.Models.Dtos
         public RidePosition StartPosition { get; set; }
         public RidePosition EndPosition { get; set; }
         public int NumberofPassenger { get; set; }
+        public int MaxRouteDistanceFromStartingPoint { get; set; }
+        public int MaxRouteDistanceFromEndingPoint { get; set; }
         public int UserId { get; set; }
     }
 }

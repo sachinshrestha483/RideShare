@@ -12,6 +12,8 @@ namespace RideShare.Models.Models.Dtos
         public int OverLappingPathStartIndex { get; set; }
         public int OverLappingPathEndIndex { get; set; }
         public int RideId { get; set; }
+        public int  DistanceFromInitialPosition { get; set; }
+        public int DistanceFromFinalPosition { get; set; }
 
 
 

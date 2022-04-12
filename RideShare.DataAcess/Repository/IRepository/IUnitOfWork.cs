@@ -31,6 +31,9 @@ namespace RideShare.DataAcess.Repository.IRepository
 
         IRideIntermediatePositionRepository RideIntermediatePositionRepository { get; }
 
+        IRideShareOfferRepository RideShareOfferRepository{ get; }
+
+
         void Save();
 
 

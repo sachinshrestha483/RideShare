@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace RideShare.Models.Models
 {
@@ -23,6 +24,8 @@ namespace RideShare.Models.Models
         public double Price { get; set; }
         public Vehicle Vehicle { get; set; }
         public int VehicleId { get; set; }
+        [JsonIgnore]
+        public User User{ get; set; }
         public int  UserId { get; set; }
         public   List<RideIntermediatePosition> IntermediatePositions{ get; set; }
     }
