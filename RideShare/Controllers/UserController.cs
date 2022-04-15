@@ -259,7 +259,8 @@ var logout=            _unitOfWork.RefreshTokenRepository.Logout(refreshToken);
 
         [HttpPost("Authenticate")]
 
-        public async  Task<IActionResult> Authenticate(AuthenticateRequestObject authenticateRequestObject)
+        public async  Task<IActionResult> 
+            Authenticate(AuthenticateRequestObject authenticateRequestObject)
         {
             var user = _unitOfWork.UserRepository.Authenticate(authenticateRequestObject.email, authenticateRequestObject.Password);
             if (user == null)

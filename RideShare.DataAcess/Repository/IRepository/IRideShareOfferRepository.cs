@@ -25,6 +25,9 @@ namespace RideShare.DataAcess.Repository.IRepository
         public RideShareOffer GetById(int id);
 
 
+        public List<int> GetAllApprovedRideOffers(int rideId);
+
+        public List<int> GetAllDisApprovedRideOffers(int rideId);
 
 
 

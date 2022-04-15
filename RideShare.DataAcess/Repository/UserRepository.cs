@@ -18,7 +18,7 @@ using Twilio.Rest.Api.V2010.Account;
 
 namespace RideShare.DataAcess.Repository
 {
-   public  class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -36,7 +36,7 @@ namespace RideShare.DataAcess.Repository
         private TwilioSettings _twilioOptions { get; set; }
 
 
-        
+
 
 
         public UserRepository
@@ -59,24 +59,17 @@ namespace RideShare.DataAcess.Repository
         {
 
             string encryptedPassword = protector.Protect(password);
-
-
-
-
-
-            var user = _db.
-                Users
-                .FirstOrDefault(
-                u => u.Email == email
-                &&
-                !(u.Password == encryptedPassword));
-
-            return user;
-
+            var user = _db.Users.FirstOrDefault(u => u.Email == email);
+            var decryptedPassword = protector.Unprotect(user.Password);
+            if(decryptedPassword==password)
+            {
+                return user;
+            }
+            return null;
         }
 
 
-       
+
 
         public string GetUserPhotoName(string photoName, int userId)
         {
@@ -93,7 +86,7 @@ namespace RideShare.DataAcess.Repository
 
 
 
-        public bool SetUserProfilePhoto(string photoName,int userId)
+        public bool SetUserProfilePhoto(string photoName, int userId)
         {
 
 
@@ -106,8 +99,8 @@ namespace RideShare.DataAcess.Repository
             user.UserProfilePhotoPath = photoName;
 
             _db.Users.Update(user);
-            
-          var res=  _db.SaveChanges();
+
+            var res = _db.SaveChanges();
 
             if (res == 0)
             {
@@ -122,13 +115,13 @@ namespace RideShare.DataAcess.Repository
 
         }
 
-        public void Register(RegisterUserRequest requestUser )
+        public void Register(RegisterUserRequest requestUser)
         {
             string encryptedPassword = protector.Protect(requestUser.Password);
 
             var user = new User();
             user.FirstName = requestUser.FirstName;
-            user.LastName = requestUser.LastName;   
+            user.LastName = requestUser.LastName;
             user.Role = (int)UserRoles.Admin;
             user.Password = encryptedPassword;
             user.Email = requestUser.Email;
@@ -209,7 +202,7 @@ namespace RideShare.DataAcess.Repository
 
             if (res == 1)
             {
-            _emailSender.SendEmail(user.Email, "Email Verification", emailVerification.Code);
+                _emailSender.SendEmail(user.Email, "Email Verification", emailVerification.Code);
 
             }
 
@@ -264,7 +257,7 @@ namespace RideShare.DataAcess.Repository
                 try
                 {
                     var mesage = MessageResource.Create(
-                 body:"Your OTP for Number Verification is "+ phoneVerification.Code,
+                 body: "Your OTP for Number Verification is " + phoneVerification.Code,
                  from: new Twilio.Types.PhoneNumber(_twilioOptions.PhoneNumber),
                  to: new Twilio.Types.PhoneNumber("+917440815621")
 
@@ -275,7 +268,7 @@ namespace RideShare.DataAcess.Repository
                 {
                     return false;
                 }
-             
+
 
             }
 

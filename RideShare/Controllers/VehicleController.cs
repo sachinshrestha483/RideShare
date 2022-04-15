@@ -297,10 +297,10 @@ namespace RideShare.Controllers
 
             vehicle.VehicleType = vehicleType;
 
-            if (vehicle.UserId != user.Id)
-            {
-                return BadRequest();
-            }
+            //if (vehicle.UserId != user.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             if (vehicle.PhotoPath != null)
             {

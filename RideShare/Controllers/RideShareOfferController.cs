@@ -29,6 +29,8 @@ namespace RideShare.Controllers
 
 
 
+
+
         [HttpGet("GetById")]
 
         public IActionResult GetById(int id)
@@ -58,7 +60,61 @@ namespace RideShare.Controllers
             return Ok(rideShareOffer);
         }
 
+        [HttpGet("GetAllApprovedRideShareOfferids")]
 
+        public IActionResult GetAllApprovedRides(int id)
+        {
+            var jwtToken = HttpRequestHelper.GetJwtToken(_httpContextAccessor);
+            if (jwtToken == null)
+            {
+                return BadRequest();
+            }
+
+            var userId = _unitOfWork.JwtTokenRepository.GerUserIdByToken(jwtToken);
+
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+            var user = _unitOfWork.UserRepository.GetUser(int.Parse(userId));
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            var rideShareRequests = _unitOfWork.RideShareOfferRepository.GetAllApprovedRideOffers(id);
+
+            return Ok(rideShareRequests);
+        }
+
+        [HttpGet("GetAllDisApprovedRideShareOfferids")]
+
+        public IActionResult GetAllDisApprovedRidesOffers(int id)
+        {
+            var jwtToken = HttpRequestHelper.GetJwtToken(_httpContextAccessor);
+            if (jwtToken == null)
+            {
+                return BadRequest();
+            }
+
+            var userId = _unitOfWork.JwtTokenRepository.GerUserIdByToken(jwtToken);
+
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+            var user = _unitOfWork.UserRepository.GetUser(int.Parse(userId));
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            var rideShareRequests = _unitOfWork.RideShareOfferRepository.GetAllDisApprovedRideOffers(id);
+
+            return Ok(rideShareRequests);
+        }
 
 
         [HttpGet("GetAll")]
@@ -229,12 +285,12 @@ namespace RideShare.Controllers
                 savedRideShareOffer.LastUpdated = DateTimeOffset.UtcNow;
 
                 if (
-                rideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Intrested
-               || rideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Rejected
-               || rideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Viewed
+                savedRideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Intrested
+               || savedRideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Rejected
+               || savedRideShareOffer.RideShareOfferStatus == Models.Models.Enums.RideShareOfferStatus.Viewed
                )
                 {
-                    rideShareOffer.RideShareOfferStatus = Models.Models.Enums.RideShareOfferStatus.Updated;
+                    savedRideShareOffer.RideShareOfferStatus = Models.Models.Enums.RideShareOfferStatus.Updated;
                 }
 
                 _unitOfWork.RideShareOfferRepository.Update(savedRideShareOffer);
@@ -320,7 +376,7 @@ namespace RideShare.Controllers
 
             _unitOfWork.Save();
 
-            _unitOfWork.RideRepository.UpdateNumberOfPassengers(savedRideShareOffer.RideId, savedRideShareOffer.NumberOfPassengers);
+        //    _unitOfWork.RideRepository.UpdateNumberOfPassengers(savedRideShareOffer.RideId, savedRideShareOffer.NumberOfPassengers);
 
             //  _unitOfWork.RideShareOfferRepository.Update(rideshareOfferResponse)
 

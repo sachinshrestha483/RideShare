@@ -96,5 +96,19 @@ namespace RideShare.DataAcess.Repository
             _db.SaveChanges();
             return true;
         }
+
+
+        public List<int> GetAllApprovedRideOffers(int rideId)
+        {
+            var rideShareOfferIds = _db.RideShareOffers.Where(rs => rs.RideId == rideId && rs.RideShareOfferStatus == RideShareOfferStatus.Approved).Select(rs => rs.Id).ToList();
+            return rideShareOfferIds;
+        }
+
+        public List<int> GetAllDisApprovedRideOffers(int rideId)
+        {
+            var rideShareOfferIds = _db.RideShareOffers.Where(rs => rs.RideId == rideId && rs.RideShareOfferStatus != RideShareOfferStatus.Approved).Select(rs => rs.Id).ToList();
+            return rideShareOfferIds;
+        }
+
     }
 }

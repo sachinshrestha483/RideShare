@@ -24,7 +24,7 @@ namespace RideShare.DataAcess.Repository
         {
             return _db.Ride.Include(r => r.IntermediatePositions).FirstOrDefault(r => r.Id == id);
         }
-
+        
 
         public void UpdateNumberOfPassengers(int id, int numberofPassenger)
         {
