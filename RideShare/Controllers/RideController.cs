@@ -290,12 +290,63 @@ namespace RideShare.Controllers
 
         }
 
+
+
+        [HttpPost("GetAcceptingRequestStatus")]
+        public IActionResult GetIsAcceptingRequestStatus(RideAcceptingRequest rideAcceptingRequest)
+        {
+
+            var ride = _unitOfWork.RideRepository.GetFirstOrDefault(r => r.Id == rideAcceptingRequest.Id);
+
+            if(ride!=null)
+            {
+                return  Ok( new {status=ride.IsAcceptingRequest }) ;
+            }
+            return Ok(new { status = false});
+
+        }
+
+        [HttpPost("ToogleIsAcceptingRequest")]
+
+        public IActionResult ToggleRideIsAcceptingRequestStatus(RideAcceptingRequest rideAcceptingRequest )
+        {
+            var jwtToken = HttpRequestHelper.GetJwtToken(_httpContextAccessor);
+            if (jwtToken == null)
+            {
+                return BadRequest();
+            }
+
+            var userId = _unitOfWork.JwtTokenRepository.GerUserIdByToken(jwtToken);
+
+            if (userId == null)
+            {
+                return BadRequest();
+
+            }
+
+            var user = _unitOfWork.UserRepository.GetUser(int.Parse(userId));
+
+
+            var rideWithIdAndUserId = _unitOfWork.RideRepository.GetFirstOrDefault(r => r.Id == rideAcceptingRequest.Id && r.UserId== user.Id);
+
+            if(rideWithIdAndUserId == null)
+            {
+                return BadRequest();
+            }
+
+            _unitOfWork.RideRepository.ToggleIsAcceptingRequest(rideAcceptingRequest.Id);
+            return Ok();
+        }
+
+
+
+
         [AllowAnonymous]
         [HttpPost("FindRide")]
         public IActionResult FindRide(FindRideDto findRideDto)
         {
 
-            var ridesofDay = _unitOfWork.RideRepository.GetAll(r => (true)).ToList();
+            var ridesofDay = _unitOfWork.RideRepository.GetAll(r=>r.IsAcceptingRequest==true).ToList();
                 
             var targetPointStartPosition = S2LatLng.FromDegrees(Double.Parse(findRideDto.StartPosition.Lat), Double.Parse(findRideDto.StartPosition.Lon));//Indore
             var targetPointFinalPosition = S2LatLng.FromDegrees(Double.Parse(findRideDto.EndPosition.Lat), Double.Parse(findRideDto.EndPosition.Lon));//Indore
@@ -415,7 +466,8 @@ namespace RideShare.Controllers
 
             var user = _unitOfWork.UserRepository.GetUser(int.Parse(userId));
 
-            var rides = _unitOfWork.RideRepository.GetAll(r => r.UserId == user.Id).ToList();
+            //var rides = _unitOfWork.RideRepository.GetAll(r => r.UserId == user.Id).ToList();
+            var rides = _unitOfWork.RideRepository.LoadAllRide(user.Id);
 
             return Ok(rides);
         }

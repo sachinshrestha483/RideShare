@@ -41,6 +41,56 @@ namespace RideShare.DataAcess.Repository
         }
 
 
+        public void ToggleIsAcceptingRequest(int id)
+        {
+            var ride = _db.Ride.FirstOrDefault(r => r.Id == id);
+
+            if(ride!=null)
+            {
+                ride.IsAcceptingRequest = !ride.IsAcceptingRequest;
+                _db.SaveChanges();
+            }
+        }
+
+        public bool IsAcceptingRequestStatus(int id)
+        {
+            var ride = _db.Ride.FirstOrDefault(r => r.Id == id);
+
+            if (ride != null)
+            {
+                return ride.IsAcceptingRequest;
+            }
+            return false;
+        }
+
+        public IEnumerable<Ride> LoadAllRide(int userId)
+        {
+            var rides = _db.Ride.Where(r=>r.UserId==userId).Select(r => new Ride  {  
+              DateTimeOfRide=r.DateTimeOfRide,
+             DistanceinMeter= r.DistanceinMeter,
+             EndLocationLatitude= r.EndLocationLatitude,
+                EndLocationLongitude= r.EndLocationLongitude,
+                 EndLocationName= r.EndLocationName,
+                  Id= r.Id,
+                   IntermediatePositions= new List<RideIntermediatePosition>(),
+                    IsAcceptingRequest=r.IsAcceptingRequest,
+                     Note= r.Note,
+                      NumberofPassenger= r.NumberofPassenger,
+                        Price= r.Price,
+                         RouteVia= r.RouteVia,
+                          StartLocationLatitude= r.StartLocationLatitude,
+                           StartLocationLongitude= r.StartLocationLongitude,
+                            StartLocationName= r.StartLocationName,
+                             UserId=r.UserId,
+                              VehicleId= r.VehicleId,
+                             
+                               
+            });
+            return rides.ToList();
+        }
+
+
+
         public void Update(Ride ride)
         {
             var savedRide = _db.Ride.FirstOrDefault(r => r.Id == ride.Id);
@@ -66,6 +116,9 @@ namespace RideShare.DataAcess.Repository
                 _db.SaveChanges();
 
             }
+
+
+
 
         }
     }

@@ -28,5 +28,7 @@ namespace RideShare.Models.Models
         public User User{ get; set; }
         public int  UserId { get; set; }
         public   List<RideIntermediatePosition> IntermediatePositions{ get; set; }
+        public bool IsAcceptingRequest { get; set; }
+
     }
 }
