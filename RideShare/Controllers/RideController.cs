@@ -88,6 +88,50 @@ namespace RideShare.Controllers
         }
 
 
+        [AllowAnonymous]
+        [HttpPost("CalculatePathDistance")]
+
+        public IActionResult PathDistance(RidePathRequestObject ridePathRequestObject)
+        {
+            var pathlatlongs = JsonSerializer.Deserialize<List<List<decimal>>>(ridePathRequestObject.Path);
+
+            var cells = new List<S2Point>();
+
+
+            var listLength = pathlatlongs.Count();
+            int index = 0;
+
+            double totalDistance = 0;
+
+            foreach (var latlong in pathlatlongs)
+            {
+                var latlng = S2LatLng.FromDegrees((double)latlong[0], (double)latlong[1]);//Indore
+                var point = latlng.ToPoint();
+                var npoint = S2Point.Normalize(point);
+
+                if (index < listLength - 1)
+                {
+
+                    var nextLatLng = S2LatLng.FromDegrees((double)pathlatlongs[index+1][0], (double)pathlatlongs[index + 1][1]);
+                    var distance= latlng.GetEarthDistance(nextLatLng);
+                    totalDistance = totalDistance + distance;
+                }
+
+                index++;
+
+
+                cells.Add(npoint);
+            }
+
+            return Ok(new {distance=totalDistance });
+        }
+
+
+
+
+
+
+
 
         [HttpPost("EditRide")]
         public IActionResult EditBasicRideInfo(RideDto rideDto)
@@ -300,7 +344,11 @@ namespace RideShare.Controllers
                 }
 
 
-                if(nearestEdgeIndexNearEndingPoint - nearestEdgeIndexNearStartingPoint < 10)
+                //if(nearestEdgeIndexNearEndingPoint - nearestEdgeIndexNearStartingPoint < 10)
+                //{
+                //    continue;
+                //}
+                if (nearestEdgeIndexNearEndingPoint - nearestEdgeIndexNearStartingPoint < 5)
                 {
                     continue;
                 }
