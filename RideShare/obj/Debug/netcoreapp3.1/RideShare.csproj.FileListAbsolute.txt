@@ -171,3 +171,4 @@ F:\Users\sachi\source\repos\RideShare\RideShare\obj\Debug\netcoreapp3.1\RideShar
 F:\Users\sachi\source\repos\RideShare\RideShare\obj\Debug\netcoreapp3.1\RideShare.pdb
 F:\Users\sachi\source\repos\RideShare\RideShare\obj\Debug\netcoreapp3.1\RideShare.genruntimeconfig.cache
 F:\Users\sachi\source\repos\RideShare\RideShare\bin\Debug\netcoreapp3.1\S2Geometry.dll
+F:\Users\sachi\source\repos\RideShare\RideShare\bin\Debug\netcoreapp3.1\RazorPay Core.dll

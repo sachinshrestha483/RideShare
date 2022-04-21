@@ -365,6 +365,10 @@
               "target": "Package",
               "version": "[5.0.4, )"
             },
+            "RazorPay.Core": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
             "S2Geometry": {
               "target": "Package",
               "version": "[1.0.3, )"

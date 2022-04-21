@@ -29,6 +29,10 @@ namespace RideShare.DataAcess.Repository.IRepository
 
         public List<int> GetAllDisApprovedRideOffers(int rideId);
 
+        public (bool isSucessfull, string message) MakePayment(int rideShareOfferId, double amount, string token );
+        public (bool isSucessfull, string message) IsPaymentDoable(int rideShareOfferId);
+
+
 
 
     }

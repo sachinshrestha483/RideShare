@@ -35,6 +35,9 @@ namespace RideShare.Models.Models
         public int DistancefromFinalLocation { get; set; }
         public string OverlappingPath { get; set; }
         public int  UserId { get; set; }
+        public bool  IsPaymentDone { get; set; }
+        public string PaymentToken{ get; set; }
+        public double OnlineCollectedAmount { get; set; }
 
     }
 }

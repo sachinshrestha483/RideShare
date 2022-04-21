@@ -110,5 +110,46 @@ namespace RideShare.DataAcess.Repository
             return rideShareOfferIds;
         }
 
+
+        public (bool isSucessfull, string message) IsPaymentDoable(int rideShareOfferId)
+        {
+            var rideShareOffer = _db.RideShareOffers.FirstOrDefault(rs => rs.Id == rideShareOfferId);
+
+
+            if (rideShareOffer.RideShareOfferStatus != RideShareOfferStatus.Approved)
+            {
+                return (isSucessfull: false, message: "RideShare Offer Not Approved");
+            }
+
+            if (rideShareOffer == null)
+            {
+                return (isSucessfull: false, message: "RideShare Offer Dont Exist");
+            }
+
+            if (rideShareOffer.IsPaymentDone)
+            {
+                return (isSucessfull: false, message: "Payment Already Done For : "+ rideShareOffer.OnlineCollectedAmount);
+            }
+
+
+            return (true, "");
+        }
+
+
+
+
+        public (bool isSucessfull, string message) MakePayment(int rideShareOfferId, double amount, string token)
+        {
+            var rideShareOffer = _db.RideShareOffers.FirstOrDefault(rs => rs.Id == rideShareOfferId);
+
+            rideShareOffer.OnlineCollectedAmount = amount;
+            rideShareOffer.PaymentToken = token;
+            rideShareOffer.IsPaymentDone = true;
+            _db.SaveChanges();
+
+            return (true, "");
+        }
+
+
     }
 }

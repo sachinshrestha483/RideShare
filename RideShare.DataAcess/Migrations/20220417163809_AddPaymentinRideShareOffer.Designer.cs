@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RideShare.DataAcess.Data;
 
 namespace RideShare.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417163809_AddPaymentinRideShareOffer")]
+    partial class AddPaymentinRideShareOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,9 +247,6 @@ namespace RideShare.DataAcess.Migrations
 
                     b.Property<int>("OfferedPrice")
                         .HasColumnType("int");
-
-                    b.Property<double>("OnlineCollectedAmount")
-                        .HasColumnType("float");
 
                     b.Property<string>("OverlappingPath")
                         .HasColumnType("nvarchar(max)");

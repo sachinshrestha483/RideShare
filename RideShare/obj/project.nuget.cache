@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "g0exMef5YXR3Gyj1fAG7VvSv+T+/emI3tbv6/tXVao0RHUrjbzHoXSDNUyNNziULoLDB5GSxGMQg++tBBjEd2A==",
+  "dgSpecHash": "DaFRMRUFomPgA4r1Br08UlNz/yzN/SXozBf0lzFqJMC/cmX23HLva7tOsr66/zeov0ynAZHeok7R0p7xBEJPFw==",
   "success": true,
   "projectFilePath": "F:\\Users\\sachi\\source\\repos\\RideShare\\RideShare\\RideShare.csproj",
   "expectedPackageFiles": [
@@ -51,7 +51,8 @@
     "C:\\Users\\SHREE\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\SHREE\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\SHREE\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\SHREE\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\SHREE\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\SHREE\\.nuget\\packages\\razorpay.core\\1.0.2\\razorpay.core.1.0.2.nupkg.sha512",
     "C:\\Users\\SHREE\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\SHREE\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\SHREE\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

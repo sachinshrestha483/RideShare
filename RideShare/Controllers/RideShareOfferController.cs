@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Razorpay.Api;
 using RideShare.DataAcess.Repository.IRepository;
 using RideShare.Models.Models;
 using RideShare.Models.Models.Enums;
@@ -324,6 +325,43 @@ namespace RideShare.Controllers
             }
             return Ok(new {name=name });
         }
+
+        [HttpPost("AcceptPayment")]
+        public IActionResult AcceptPayment(PaymentObject paymentObject)
+        {
+
+         var isPaymentDoable= _unitOfWork.RideShareOfferRepository.IsPaymentDoable(paymentObject.RideShareOfferId);
+
+            if(!isPaymentDoable.isSucessfull)
+            {
+                return BadRequest(new {message= isPaymentDoable.message });
+            }
+
+
+            string paymentId = paymentObject.PaymentId;
+            var client = new RazorpayClient("rzp_test_6pWr7K9xz2LCTh", "0ry25jNtdfLVX1mR1X5xPQZx");
+            Dictionary<string, object> options = new Dictionary<string, object>();
+
+            options.Add("amount", paymentObject.Price*100);
+            // this in paise.....
+
+            options.Add("currency", "INR");
+            Razorpay.Api.Order order = client.Order.Create(options);
+            var payment = new Payment(paymentId);
+            Dictionary<string, object> all = new Dictionary<string, object>();
+            var st = payment.Capture(options);
+            string status = st.Attributes.status;
+            if (status.ToLower() == "captured")
+            {
+                _unitOfWork.RideShareOfferRepository.MakePayment(paymentObject.RideShareOfferId,paymentObject.Price, paymentObject.PaymentId);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
 
         [HttpPost("LoadRideShareOfferForReview")]
         public IActionResult LoadRideShareOfferFor(GetRideShareOffer getRideShareOffer)

@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="RazorPay.Core" Version="1.0.2" />
     <PackageReference Include="S2Geometry" Version="1.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Twilio" Version="5.55.0" />
